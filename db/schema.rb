@@ -12,20 +12,20 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_04_06_182937) do
   create_table "admins", force: :cascade do |t|
+    t.integer "clubhouse_id", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["clubhouse_id"], name: "index_admins_on_clubhouse_id"
     t.index ["user_id"], name: "index_admins_on_user_id"
   end
 
   create_table "clubhouses", force: :cascade do |t|
     t.text "title", null: false
     t.text "description"
-    t.integer "admin_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["admin_id", "title"], name: "index_clubhouses_on_admin_id_and_title", unique: true
-    t.index ["admin_id"], name: "index_clubhouses_on_admin_id"
+    t.index "\"admin_id\", \"title\"", name: "index_clubhouses_on_admin_id_and_title", unique: true
   end
 
   create_table "comments", force: :cascade do |t|
@@ -66,8 +66,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_06_182937) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "admins", "clubhouses"
   add_foreign_key "admins", "users"
-  add_foreign_key "clubhouses", "admins"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "memberships", "clubhouses"
