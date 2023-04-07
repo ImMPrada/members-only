@@ -1,6 +1,6 @@
-class CreateClubhousesTable < ActiveRecord::Migration[7.0]
+class CreateClubhouses < ActiveRecord::Migration[7.0]
   def change
-    create_table :clubhouses_tables do |t|
+    create_table :clubhouses do |t|
       t.text :title, null: false
       t.text :description
       t.belongs_to :admin, null: false, foreign_key: true
@@ -8,6 +8,6 @@ class CreateClubhousesTable < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    add_index :clubhouse, %i[admin_id title], unique: true
+    add_index :clubhouses, %i[admin_id title], unique: true
   end
 end

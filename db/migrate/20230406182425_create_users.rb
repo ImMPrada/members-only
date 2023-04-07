@@ -1,7 +1,7 @@
-class CreateUsersTable < ActiveRecord::Migration[7.0]
+class CreateUsers < ActiveRecord::Migration[7.0]
   def change
-    create_table :users_tables do |t|
-      t.string :username, null: falsen, unique: true
+    create_table :users do |t|
+      t.string :username, null: false, unique: true
       t.string :email, null: false, unique: true
 
       t.timestamps
