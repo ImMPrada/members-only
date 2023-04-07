@@ -1,10 +1,8 @@
 class User < ApplicationRecord
-  has_many :admins, dependent: :destroy
   has_many :clubhouses, through: :admins, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :memberships, dependent: :destroy
-  has_many :clubhouses, through: :membership
 
   validates :email, presence: true, uniqueness: true, format: {
     with: URI::MailTo::EMAIL_REGEXP,
