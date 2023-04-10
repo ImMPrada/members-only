@@ -14,16 +14,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_06_182937) do
   create_table "clubhouses", force: :cascade do |t|
     t.text "title", null: false
     t.text "description"
-    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index "\"admin_id\", \"title\"", name: "index_clubhouses_on_admin_id_and_title", unique: true
-    t.index ["user_id"], name: "index_clubhouses_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
     t.text "content", null: false
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.integer "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,6 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_06_182937) do
   create_table "memberships", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "clubhouse_id", null: false
+    t.text "role", default: "member", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["clubhouse_id"], name: "index_memberships_on_clubhouse_id"
@@ -42,7 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_06_182937) do
 
   create_table "posts", force: :cascade do |t|
     t.text "content", null: false
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.integer "clubhouse_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -59,7 +58,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_06_182937) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "clubhouses", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "memberships", "clubhouses"
