@@ -84,4 +84,30 @@ RSpec.describe Clubhouse, type: :model do
       expect(described_class.first.admins.size).to eq(2)
     end
   end
+
+  describe '#members' do
+    let(:user) { create(:user) }
+    let(:title) { "TED talks: #{Faker::ProgrammingLanguage.name}" }
+
+    before do
+      clubhouse = described_class.with_owner(user, { title: })
+
+      user = create(:user)
+      Membership.create(user:, clubhouse:)
+
+      user = create(:user)
+      Membership.create(user:, clubhouse:)
+
+      user = create(:user)
+      Membership.create(user:, clubhouse:)
+    end
+
+    it 'returns an array of users' do
+      expect(described_class.first.members).to all(be_instance_of(User))
+    end
+
+    it 'returns an array of right size' do
+      expect(described_class.first.members.size).to eq(3)
+    end
+  end
 end
