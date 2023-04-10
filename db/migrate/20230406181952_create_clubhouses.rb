@@ -6,7 +6,5 @@ class CreateClubhouses < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-
-    add_index :clubhouses, %i[admin_id title], unique: true
   end
 end

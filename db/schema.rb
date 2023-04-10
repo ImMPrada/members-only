@@ -16,7 +16,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_06_182937) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index "\"admin_id\", \"title\"", name: "index_clubhouses_on_admin_id_and_title", unique: true
   end
 
   create_table "comments", force: :cascade do |t|
