@@ -8,7 +8,8 @@ RSpec.describe Clubhouse, type: :model do
   end
 
   describe 'associations' do
-    it { is_expected.to have_many(:users) }
+    it { is_expected.to have_many(:posts) }
+    it { is_expected.to have_many(:memberships) }
   end
 
   describe '.with_owner' do
