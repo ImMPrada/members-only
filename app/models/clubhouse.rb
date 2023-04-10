@@ -16,4 +16,8 @@ class Clubhouse < ApplicationRecord
 
     nil
   end
+
+  def owners
+    memberships.where(role: 'owner').map(&:user)
+  end
 end
