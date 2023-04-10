@@ -1,0 +1,44 @@
+require:
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 3.1.2
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+convention:Style/Documentation:
+  Enabled: false
+
+Style/OptionalBooleanParameter:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 15
+
+RSpec/BlockLength:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/ContainExactly:
+  Enabled: false
+
+RSpec/MatchArray:
+  Enabled: false
+
+Lint/MissingSuper:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
