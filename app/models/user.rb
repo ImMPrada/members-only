@@ -1,7 +1,6 @@
 class User < ApplicationRecord
-  has_many :clubhouses, dependent: :destroy
-  has_many :posts, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  has_many :posts
+  has_many :comments
   has_many :memberships, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true, format: {
