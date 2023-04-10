@@ -16,4 +16,22 @@ class User < ApplicationRecord
                          with: /\A[a-z\d]*\Z/i,
                          message: 'allows only numbers and letters'
                        }
+
+  def clubhouses_as_owner
+    clubhouses_of_role('owner')
+  end
+
+  def clubhouses_as_admin
+    clubhouses_of_role('admin')
+  end
+
+  def clubhouses_as_member
+    clubhouses_of_role('member')
+  end
+
+  private
+
+  def clubhouses_of_role(role)
+    Membership.where('user_id = ? AND role = ?', id, role).map(&:clubhouse)
+  end
 end
