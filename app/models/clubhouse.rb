@@ -17,14 +17,20 @@ class Clubhouse < ApplicationRecord
   end
 
   def owners
-    memberships.where(role: 'owner').map(&:user)
+    users_of_role('owner')
   end
 
   def admins
-    memberships.where(role: 'admin').map(&:user)
+    users_of_role('admin')
   end
 
   def members
-    memberships.where(role: 'member').map(&:user)
+    users_of_role('member')
+  end
+
+  private
+
+  def users_of_role(role)
+    Membership.where('clubhouse_id = ? AND role = ?', id, role).map(&:user)
   end
 end
