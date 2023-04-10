@@ -3,7 +3,7 @@ class CreateClubhouses < ActiveRecord::Migration[7.0]
     create_table :clubhouses do |t|
       t.text :title, null: false
       t.text :description
-      t.belongs_to :admin, null: false, foreign_key: true
+      t.belongs_to :user, null: false, foreign_key: true
 
       t.timestamps
     end

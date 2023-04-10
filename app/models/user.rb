@@ -1,6 +1,5 @@
 class User < ApplicationRecord
-  has_many :admin, dependent: :destroy
-  has_many :clubhouses, through: :admin, dependent: :destroy
+  has_many :clubhouses, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :memberships, dependent: :destroy

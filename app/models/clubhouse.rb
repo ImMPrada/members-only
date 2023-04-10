@@ -1,5 +1,5 @@
 class Clubhouse < ApplicationRecord
-  has_one :admin
+  belongs_to :user
 
   validates :title, presence: true
 end
