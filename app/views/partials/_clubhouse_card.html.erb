@@ -23,8 +23,8 @@
     <h3 class = 'block text-xl'>Since: Date</h3>
     <div>
       <h3 class = 'block text-xl'>Admins:</h3>
-        <% clubhouse.owners.each do |owner| %>
-          <%= render partial: 'partials/user_card', locals: { user: owner, basic_info: true } %>
+        <% [*clubhouse.owners, *clubhouse.admins].each do |user| %>
+          <%= render partial: 'partials/user_card', locals: { user:, basic_info: true } %>
         <% end %>
     </div>
   </div>
