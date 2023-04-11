@@ -3,7 +3,9 @@ class ClubhousesController < ApplicationController
 
   def create; end
 
-  def index; end
+  def index
+    @clubhouses = Clubhouse.all
+  end
 
   def show; end
 

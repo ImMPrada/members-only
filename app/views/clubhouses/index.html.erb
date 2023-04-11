@@ -1,0 +1,8 @@
+<div id="clubhouses_list" class="flex flex-col gap-10">
+  <% if @clubhouses.empty? %>
+    <h2 class="text-l pt-8 text-red-500">THERE ARE NO CLUBHOUSES</h2>
+  <% end %>
+  <% @clubhouses.each do |clubhouse| %>
+    <%= render partial: 'partials/clubhouse_card', locals: { clubhouse: } %>
+  <% end %>
+</div>
