@@ -1,0 +1,21 @@
+<div class = 'flex flex-col w-full p-5'>
+  <div class = 'w-full mb-6 sticky'>
+    <h2 class = 'block text-xl mb-2 border-b'>
+      <%= @post.content %>
+    </h2>
+    <h3 class = 'block text-base'>
+      <%= @post.user.username%>
+    </h3>
+  </div>
+
+  <% comments = @post.comments %>
+  <h4 class = 'block text-base mb-1'>
+    Comments: <%= comments.size %>
+  </h4>
+
+  <div>
+    <% comments.each do |post| %>
+      <%= render partial: 'partials/comment_card', locals: { comment: } %>
+    <% end %>
+  </div>
+</div>
