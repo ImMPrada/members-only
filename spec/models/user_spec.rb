@@ -23,6 +23,13 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe 'associations' do
+    it { is_expected.to have_many(:posts) }
+    it { is_expected.to have_many(:memberships) }
+    it { is_expected.to have_many(:comments) }
+    it { is_expected.to have_many(:clubhouses) }
+  end
+
   describe '#clubhouses_as_owner' do
     let(:title) { "TED talks: #{Faker::ProgrammingLanguage.name}" }
 

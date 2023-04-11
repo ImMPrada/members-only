@@ -1,6 +1,7 @@
 class Clubhouse < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :memberships, dependent: :destroy
+  has_many :users, through: :memberships
 
   validates :title, presence: true
 
@@ -32,6 +33,6 @@ class Clubhouse < ApplicationRecord
 
   def users_of_role(role)
     role_memberships = memberships.where(role:)
-    User.where(id: role_memberships.select(:user_id))
+    users.where(id: role_memberships.select(:user_id))
   end
 end

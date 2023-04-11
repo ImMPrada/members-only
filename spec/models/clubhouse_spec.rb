@@ -10,6 +10,7 @@ RSpec.describe Clubhouse, type: :model do
   describe 'associations' do
     it { is_expected.to have_many(:posts) }
     it { is_expected.to have_many(:memberships) }
+    it { is_expected.to have_many(:users) }
   end
 
   describe '.create_with_owner' do

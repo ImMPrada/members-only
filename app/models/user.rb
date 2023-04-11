@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :memberships, dependent: :destroy
+  has_many :clubhouses, through: :memberships
 
   validates :email, presence: true, uniqueness: true, format: {
     with: URI::MailTo::EMAIL_REGEXP,
@@ -29,6 +30,6 @@ class User < ApplicationRecord
 
   def clubhouses_of_role(role)
     role_memberships = memberships.where(role:)
-    Clubhouse.where(id: role_memberships.select(:clubhouse_id))
+    clubhouses.where(id: role_memberships.select(:clubhouse_id))
   end
 end

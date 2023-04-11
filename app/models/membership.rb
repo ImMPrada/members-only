@@ -6,6 +6,6 @@ class Membership < ApplicationRecord
   belongs_to :user
   belongs_to :clubhouse
 
-  validates :role, presence: true, inclusion: { in: %w[member admin owner],
-                                                message: "%{value} is not a valid size" }
+  validates :role, presence: true, inclusion: { in: [OWNER_ROLE, ADMIN_ROLE, MEMBER_ROLE],
+                                                message: '%<value>s is not a valid size' }
 end
