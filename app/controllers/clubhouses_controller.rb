@@ -7,7 +7,9 @@ class ClubhousesController < ApplicationController
     @clubhouses = Clubhouse.all
   end
 
-  def show; end
+  def show
+    @clubhouse = Clubhouse.find(params[:id])
+  end
 
   def edit; end
 
