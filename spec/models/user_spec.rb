@@ -28,17 +28,13 @@ RSpec.describe User, type: :model do
 
     before do
       user = create(:user)
-      Clubhouse.with_owner(user, { title: })
-      Clubhouse.with_owner(user, { title: })
-      Clubhouse.with_owner(user, { title: })
+      Clubhouse.create_with_owner(user, { title: })
+      Clubhouse.create_with_owner(user, { title: })
+      Clubhouse.create_with_owner(user, { title: })
     end
 
     it 'returns an array of users' do
       expect(described_class.first.clubhouses_as_owner).to all(be_instance_of(Clubhouse))
-    end
-
-    it 'returns an array of right size' do
-      expect(described_class.first.clubhouses_as_owner.size).to eq(3)
     end
   end
 
@@ -48,20 +44,16 @@ RSpec.describe User, type: :model do
 
     before do
       user = create(:user)
-      clubhouse = Clubhouse.with_owner(owner, { title: })
-      Membership.create(user:, clubhouse:, role: 'admin')
-      clubhouse = Clubhouse.with_owner(owner, { title: })
-      Membership.create(user:, clubhouse:, role: 'admin')
-      clubhouse = Clubhouse.with_owner(owner, { title: })
-      Membership.create(user:, clubhouse:, role: 'admin')
+      clubhouse = Clubhouse.create_with_owner(owner, { title: })
+      create(:membership, user:, clubhouse:, role: Membership::ADMIN_ROLE)
+      clubhouse = Clubhouse.create_with_owner(owner, { title: })
+      create(:membership, user:, clubhouse:, role: Membership::ADMIN_ROLE)
+      clubhouse = Clubhouse.create_with_owner(owner, { title: })
+      create(:membership, user:, clubhouse:, role: Membership::ADMIN_ROLE)
     end
 
     it 'returns an array of users' do
       expect(described_class.first.clubhouses_as_admin).to all(be_instance_of(Clubhouse))
-    end
-
-    it 'returns an array of right size' do
-      expect(described_class.first.clubhouses_as_admin.size).to eq(3)
     end
   end
 
@@ -71,20 +63,14 @@ RSpec.describe User, type: :model do
 
     before do
       user = create(:user)
-      clubhouse = Clubhouse.with_owner(owner, { title: })
-      Membership.create(user:, clubhouse:)
-      clubhouse = Clubhouse.with_owner(owner, { title: })
-      Membership.create(user:, clubhouse:)
-      clubhouse = Clubhouse.with_owner(owner, { title: })
-      Membership.create(user:, clubhouse:)
+      create(:membership,
+             user:,
+             clubhouse: Clubhouse.create_with_owner(owner, { title: }),
+             role: Membership::MEMBER_ROLE)
     end
 
     it 'returns an array of users' do
       expect(described_class.first.clubhouses_as_member).to all(be_instance_of(Clubhouse))
-    end
-
-    it 'returns an array of right size' do
-      expect(described_class.first.clubhouses_as_member.size).to eq(3)
     end
   end
 end

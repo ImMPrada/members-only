@@ -4,12 +4,12 @@ class Clubhouse < ApplicationRecord
 
   validates :title, presence: true
 
-  def self.with_owner(owner, properties)
+  def self.create_with_owner(owner, properties)
     clubhouse = Clubhouse.create(properties)
     membership = Membership.new(
       user: owner,
       clubhouse:,
-      role: 'owner'
+      role: Membership::OWNER_ROLE
     )
     return clubhouse if membership.save
 
@@ -17,20 +17,21 @@ class Clubhouse < ApplicationRecord
   end
 
   def owners
-    users_of_role('owner')
+    users_of_role(Membership::OWNER_ROLE)
   end
 
   def admins
-    users_of_role('admin')
+    users_of_role(Membership::ADMIN_ROLE)
   end
 
   def members
-    users_of_role('member')
+    users_of_role(Membership::MEMBER_ROLE)
   end
 
   private
 
   def users_of_role(role)
-    Membership.where('clubhouse_id = ? AND role = ?', id, role).map(&:user)
+    role_memberships = memberships.where(role:)
+    User.where(id: role_memberships.select(:user_id))
   end
 end

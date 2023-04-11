@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_04_06_182937) do
   create_table "clubhouses", force: :cascade do |t|
-    t.text "title", null: false
+    t.string "title", null: false
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -31,7 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_06_182937) do
   create_table "memberships", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "clubhouse_id", null: false
-    t.text "role", default: "member", null: false
+    t.string "role", default: "member", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["clubhouse_id"], name: "index_memberships_on_clubhouse_id"

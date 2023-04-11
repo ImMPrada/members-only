@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    username { "us#{Faker::Name.first_name.gsub(/\W/, '')}" }
+    username { Faker::Internet.username(specifier: 3...20) }
     email { Faker::Internet.email }
   end
 end

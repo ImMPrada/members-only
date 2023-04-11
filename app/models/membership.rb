@@ -1,4 +1,8 @@
 class Membership < ApplicationRecord
+  OWNER_ROLE = 'owner'.freeze
+  ADMIN_ROLE = 'admin'.freeze
+  MEMBER_ROLE = 'member'.freeze
+
   belongs_to :user
   belongs_to :clubhouse
 

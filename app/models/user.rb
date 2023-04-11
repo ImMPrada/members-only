@@ -11,27 +11,24 @@ class User < ApplicationRecord
                        length: {
                          in: 3..20,
                          wrong_length: 'must be between 3 and 20 characters'
-                       },
-                       format: {
-                         with: /\A[a-z\d]*\Z/i,
-                         message: 'allows only numbers and letters'
                        }
 
   def clubhouses_as_owner
-    clubhouses_of_role('owner')
+    clubhouses_of_role(Membership::OWNER_ROLE)
   end
 
   def clubhouses_as_admin
-    clubhouses_of_role('admin')
+    clubhouses_of_role(Membership::ADMIN_ROLE)
   end
 
   def clubhouses_as_member
-    clubhouses_of_role('member')
+    clubhouses_of_role(Membership::MEMBER_ROLE)
   end
 
   private
 
   def clubhouses_of_role(role)
-    Membership.where('user_id = ? AND role = ?', id, role).map(&:clubhouse)
+    role_memberships = memberships.where(role:)
+    Clubhouse.where(id: role_memberships.select(:clubhouse_id))
   end
 end

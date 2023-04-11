@@ -5,9 +5,9 @@ RSpec.describe Membership, type: :model do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:role) }
-    it { is_expected.to allow_value('member').for(:role) }
-    it { is_expected.to allow_value('admin').for(:role) }
-    it { is_expected.to allow_value('owner').for(:role) }
+    it { is_expected.to allow_value(Membership::MEMBER_ROLE).for(:role) }
+    it { is_expected.to allow_value(Membership::ADMIN_ROLE).for(:role) }
+    it { is_expected.to allow_value(Membership::OWNER_ROLE).for(:role) }
     it { is_expected.not_to allow_value('not_a_role').for(:role) }
   end
 

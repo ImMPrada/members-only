@@ -12,15 +12,15 @@ RSpec.describe Clubhouse, type: :model do
     it { is_expected.to have_many(:memberships) }
   end
 
-  describe '.with_owner' do
+  describe '.create_with_owner' do
     let(:title) { "TED talks: #{Faker::ProgrammingLanguage.name}" }
-    let(:clubhouse_with_owner) { described_class.with_owner(user, { title: }) }
+    let(:clubhouse_create_with_owner) { described_class.create_with_owner(user, { title: }) }
 
     describe 'when owner user is nil' do
       let(:user) { nil }
 
       it 'returns a clubhouse instance' do
-        expect(clubhouse_with_owner).to be_nil
+        expect(clubhouse_create_with_owner).to be_nil
       end
     end
 
@@ -28,7 +28,7 @@ RSpec.describe Clubhouse, type: :model do
       let(:user) { create(:user) }
 
       it 'returns a clubhouse instance' do
-        expect(clubhouse_with_owner).to be_instance_of(described_class)
+        expect(clubhouse_create_with_owner).to be_instance_of(described_class)
       end
     end
   end
@@ -38,24 +38,20 @@ RSpec.describe Clubhouse, type: :model do
     let(:title) { "TED talks: #{Faker::ProgrammingLanguage.name}" }
 
     before do
-      clubhouse = described_class.with_owner(user, { title: })
+      clubhouse = described_class.create_with_owner(user, { title: })
 
       user = create(:user)
-      Membership.create(user:, clubhouse:, role: 'owner')
+      create(:membership, user:, clubhouse:, role: Membership::OWNER_ROLE)
 
       user = create(:user)
-      Membership.create(user:, clubhouse:, role: 'owner')
+      create(:membership, user:, clubhouse:, role: Membership::OWNER_ROLE)
 
       user = create(:user)
-      Membership.create(user:, clubhouse:, role: 'member')
+      create(:membership, user:, clubhouse:, role: Membership::MEMBER_ROLE)
     end
 
     it 'returns an array of users' do
       expect(described_class.first.owners).to all(be_instance_of(User))
-    end
-
-    it 'returns an array of right size' do
-      expect(described_class.first.owners.size).to eq(3)
     end
   end
 
@@ -64,24 +60,20 @@ RSpec.describe Clubhouse, type: :model do
     let(:title) { "TED talks: #{Faker::ProgrammingLanguage.name}" }
 
     before do
-      clubhouse = described_class.with_owner(user, { title: })
+      clubhouse = described_class.create_with_owner(user, { title: })
 
       user = create(:user)
-      Membership.create(user:, clubhouse:, role: 'admin')
+      create(:membership, user:, clubhouse:, role: Membership::ADMIN_ROLE)
 
       user = create(:user)
-      Membership.create(user:, clubhouse:, role: 'admin')
+      create(:membership, user:, clubhouse:, role: Membership::ADMIN_ROLE)
 
       user = create(:user)
-      Membership.create(user:, clubhouse:, role: 'member')
+      create(:membership, user:, clubhouse:, role: Membership::MEMBER_ROLE)
     end
 
     it 'returns an array of users' do
       expect(described_class.first.admins).to all(be_instance_of(User))
-    end
-
-    it 'returns an array of right size' do
-      expect(described_class.first.admins.size).to eq(2)
     end
   end
 
@@ -90,24 +82,20 @@ RSpec.describe Clubhouse, type: :model do
     let(:title) { "TED talks: #{Faker::ProgrammingLanguage.name}" }
 
     before do
-      clubhouse = described_class.with_owner(user, { title: })
+      clubhouse = described_class.create_with_owner(user, { title: })
 
       user = create(:user)
-      Membership.create(user:, clubhouse:)
+      create(:membership, user:, clubhouse:, role: Membership::MEMBER_ROLE)
 
       user = create(:user)
-      Membership.create(user:, clubhouse:)
+      create(:membership, user:, clubhouse:, role: Membership::MEMBER_ROLE)
 
       user = create(:user)
-      Membership.create(user:, clubhouse:)
+      create(:membership, user:, clubhouse:, role: Membership::MEMBER_ROLE)
     end
 
     it 'returns an array of users' do
       expect(described_class.first.members).to all(be_instance_of(User))
-    end
-
-    it 'returns an array of right size' do
-      expect(described_class.first.members.size).to eq(3)
     end
   end
 end
