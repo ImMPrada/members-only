@@ -12,4 +12,7 @@
   .list-of-cards {
     @apply flex-col px-8 gap-5;
   }
+  .field {
+    @apply flex flex-col w-full mb-2;
+  }
 }
