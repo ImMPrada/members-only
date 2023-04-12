@@ -1,0 +1,10 @@
+<h2>
+  THE USERS
+</h2>
+
+<% if current_user %>
+  <%= image_tag("https://api.dicebear.com/6.x/bottts/svg?seed=#{current_user.username}", size: "50x50") %>
+  <h3>
+    <%= current_user.username %>
+  </h3>
+<% end %>
