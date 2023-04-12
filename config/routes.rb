@@ -14,6 +14,6 @@ Rails.application.routes.draw do
 
   root 'users#show'
 
-  # resources :users, only: %i[clubhouses_or_user_profile show]
+  resources :users, only: %i[show new create]
   # resources :clubhouses, only: %i[index]
 end
