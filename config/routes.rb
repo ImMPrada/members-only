@@ -12,8 +12,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
 
-  root 'users#show'
+  root 'clubhouses#index'
 
   resources :users, only: %i[show new create]
-  # resources :clubhouses, only: %i[index]
+  resources :clubhouses, only: %i[index]
 end

@@ -1,0 +1,13 @@
+<h2>
+  THE CLUBHOUSES
+</h2>
+
+<% @clubhouses.each do |clubhouse| %>
+  <%= content_tag(:p, "Clubhouse: #{clubhouse.name}") %>
+<% end %>
+
+<% if user_signed_in? %>
+  <%= link_to "New Clubhouse", new_clubhouse_path %>
+<% else %>
+  <%= link_to "sign in", new_user_session_path %>
+<% end %>
