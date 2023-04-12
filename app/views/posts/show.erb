@@ -1,10 +1,12 @@
 <div class = 'flex flex-col'>
   <% comments = @post.comments %>
+  <% clubhouse = @post.clubhouse %>
 
   <div class = 'content-header'>
-    <p class = 'block text-xl mb-2'>
-      clubhouse: <%= @post.clubhouse.title %>
-    </p>
+    <%= link_to "clubhouse: #{clubhouse.title}",
+      clubhouse_path(clubhouse),
+      { class: 'block text-xl mb-2' } 
+    %>
     <p class = 'block text-2xl mb-6'>
       <%= @post.content %>
     </p>
