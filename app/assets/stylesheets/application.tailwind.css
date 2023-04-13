@@ -21,4 +21,7 @@
   .btn-goahead {
     @apply btn bg-green-100 text-green-800 text-center p-2 border-2 border-green-800;
   }
+  .link {
+    @apply no-underline hover:underline;
+  }
 }

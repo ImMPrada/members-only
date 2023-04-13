@@ -7,10 +7,10 @@
   <% end %>
 
   <% if user_signed_in? %>
-    <%= link_to 'Create a clubhouse', new_clubhouse_path, { class: 'btn-goahead sticky bottom-0 text-xl' } %>
-    <%= link_to 'Go to profile', user_path(current_user), { class: 'btn-goahead sticky bottom-0 text-xl' } %>
+    <%= link_to 'Create a clubhouse', new_clubhouse_path, { class: 'btn-goahead sticky bottom-5 text-xl' } %>
+    <%= link_to 'Go to profile', user_path(current_user), { class: 'btn-goahead sticky bottom-5 text-xl' } %>
   <% else %>
-    <%= link_to 'sign in', new_user_session_path, { class: 'btn-goahead sticky bottom-0 text-xl' } %>
+    <%= link_to 'sign in', new_user_session_path, { class: 'btn-goahead sticky bottom-5 text-xl' } %>
   <% end %>
 
 </div>
