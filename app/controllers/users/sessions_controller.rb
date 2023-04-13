@@ -11,7 +11,6 @@ module Users
 
     # POST /resource/sign_in
     def create
-      puts 'TEA'
       user = find_user
 
       unless user
