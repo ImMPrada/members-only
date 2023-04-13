@@ -1,12 +1,23 @@
-<div class="w-screen flex flex-col mx-auto align-center">
-  <%= image_tag("https://api.dicebear.com/6.x/bottts/svg?seed=#{current_user.username}", size: "100x100", class: "round-2 full-round") %>
-  <%= content_tag(:h_3, current_user.username, class: "text-6xl") %>
-  <%= link_to "Log out", destroy_user_session_path %>
-  <%= link_to "New Clubhouse", new_clubhouse_path %>
-  <%= link_to "Go to clubhouses list", root_path %>
+<div class="w-full flex flex-col">
+  <div class="w-full flex gap-5 my-5 items-end">
+    <%= image_tag("https://api.dicebear.com/6.x/bottts/svg?seed=#{current_user.username}", size: "100x100", class: "round-2 full-round") %>
+    <%= content_tag(:h_3, current_user.username, class: "text-6xl") %>
+    <%= link_to "Log out", destroy_user_session_path, { class: 'block link text-xl' } %>
+  </div>
 
-  <% current_user.clubhouses.each do |clubhouse| %>
-    <%= content_tag(:h_3, "Clubhouse: #{clubhouse.title}", class: "text-2xl") %>
-  <% end %>
+  <%= link_to "Go to -all clubhouses- list", root_path, { class: 'btn-goahead text-xl mb-5' } %>
+  <%= link_to 'Create a clubhouse', new_clubhouse_path, { class: 'btn-goahead text-xl mb-5' } %>
+
+  <%= content_tag(:h_5, 'member of:', class: "text-4xl block mt-5") %>
+
+  <div id="clubhouses_list" class="flex list-of-cards mt-5">
+    <% clubhouses = current_user.clubhouses %>
+
+    <% if clubhouses.empty? %>
+      <h2 class="text-l pt-8 text-red-500">THERE ARE NO CLUBHOUSES</h2>
+    <% else %>
+      <%= render partial: 'partials/clubhouses/list', locals: { clubhouses: } %>
+    <% end %>
+  </div>
 </div>
 
