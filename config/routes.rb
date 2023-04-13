@@ -6,6 +6,6 @@ Rails.application.routes.draw do
 
   root 'clubhouses#index'
 
-  resources :users, only: %i[show new create]
+  resources :users, only: %i[show new create destroy]
   resources :clubhouses, only: %i[index new create]
 end

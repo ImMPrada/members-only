@@ -5,7 +5,5 @@ class UsersController < ApplicationController
   EMAIL_PLACEHOLDER = 'example@mail.com'.freeze
   PASSWORD_PLACEHOLDER = '********'.freeze
 
-  def index; end
-
   def show; end
 end
