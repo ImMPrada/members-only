@@ -1,9 +1,9 @@
 <div id="clubhouses_list" class="flex list-of-cards">
+
   <% if @clubhouses.empty? %>
     <h2 class="text-l pt-8 text-red-500">THERE ARE NO CLUBHOUSES</h2>
-  <% end %>
-  <% @clubhouses.each do |clubhouse| %>
-    <%= render partial: 'partials/clubhouse_card', locals: { clubhouse: } %>
+  <% else %>
+    <%= render partial: 'partials/clubhouses/list', locals: { clubhouses: @clubhouses } %>
   <% end %>
 
   <% if user_signed_in? %>
@@ -12,4 +12,5 @@
   <% else %>
     <%= link_to 'sign in', new_user_session_path, { class: 'btn-goahead sticky bottom-0 text-xl' } %>
   <% end %>
+
 </div>
