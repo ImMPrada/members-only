@@ -2,12 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
 @layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+  .card {
+    @apply w-full border-2 rounded-2xl shadow-lg p-5;
+  }
+  .content-header {
+    @apply flex-col w-full p-5 mb-8;
+  }
+  .list-of-cards {
+    @apply flex-col px-8 gap-5;
+  }
+  .field {
+    @apply flex flex-col w-full mb-2;
   }
 }
-
-*/
