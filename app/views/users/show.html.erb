@@ -2,6 +2,8 @@
   <%= image_tag("https://api.dicebear.com/6.x/bottts/svg?seed=#{current_user.username}", size: "100x100", class: "round-2 full-round") %>
   <%= content_tag(:h_3, current_user.username, class: "text-6xl") %>
   <%= link_to "Log out", destroy_user_session_path %>
+  <%= link_to "New Clubhouse", new_clubhouse_path %>
+  <%= link_to "Go to clubhouses list", root_path %>
 
   <% current_user.clubhouses.each do |clubhouse| %>
     <%= content_tag(:h_3, "Clubhouse: #{clubhouse.title}", class: "text-2xl") %>
