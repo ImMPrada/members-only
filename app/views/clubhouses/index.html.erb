@@ -3,7 +3,7 @@
 </h2>
 
 <% @clubhouses.each do |clubhouse| %>
-  <%= content_tag(:p, "Clubhouse: #{clubhouse.name}") %>
+  <%= content_tag(:p, "Clubhouse: #{clubhouse.title}") %>
 <% end %>
 
 <% if user_signed_in? %>

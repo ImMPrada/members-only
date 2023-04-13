@@ -1,10 +1,10 @@
-<h2>
-  THE USERS
-</h2>
+<div class="w-screen flex flex-col mx-auto align-center">
+  <%= image_tag("https://api.dicebear.com/6.x/bottts/svg?seed=#{current_user.username}", size: "100x100", class: "round-2 full-round") %>
+  <%= content_tag(:h_3, current_user.username, class: "text-6xl") %>
+  <%= link_to "Log out", destroy_user_session_path %>
 
-<% if current_user %>
-  <%= image_tag("https://api.dicebear.com/6.x/bottts/svg?seed=#{current_user.username}", size: "50x50") %>
-  <h3>
-    <%= current_user.username %>
-  </h3>
-<% end %>
+  <% current_user.clubhouses.each do |clubhouse| %>
+    <%= content_tag(:h_3, "Clubhouse: #{clubhouse.title}", class: "text-2xl") %>
+  <% end %>
+</div>
+
