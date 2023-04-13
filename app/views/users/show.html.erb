@@ -6,7 +6,9 @@
   </div>
 
   <%= link_to "Go to -all clubhouses- list", root_path, { class: 'btn-goahead text-xl mb-5' } %>
-  <%= link_to 'Create a clubhouse', new_clubhouse_path, { class: 'btn-goahead text-xl mb-5' } %>
+  <%= link_to 'Create a clubhouse', new_clubhouse_path, { class: 'btn-goahead text-xl mb-5', data: { turbo_frame: "new_clubhouse_form" } } %>
+
+  <turbo-frame id="new_clubhouse_form"></turbo-frame>
 
   <%= content_tag(:h_5, 'member of:', class: "text-4xl block mt-5") %>
 
