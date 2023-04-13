@@ -36,7 +36,7 @@ module Users
     protected
 
     def configure_sign_in_params
-      devise_parameter_sanitizer.permit(:sign_in, keys: [:identificator])
+      devise_parameter_sanitizer.permit(:sign_in, keys: [:identifier])
     end
 
     def wrong_result
@@ -45,11 +45,11 @@ module Users
     end
 
     def find_user
-      identificator = params[:identificator]
-      user_by_email = User.find_by(email: identificator)
+      identifier = params[:identifier]
+      user_by_email = User.find_by(email: identifier)
       return user_by_email if user_by_email
 
-      User.find_by(username: identificator)
+      User.find_by(username: identifier)
     end
   end
 end

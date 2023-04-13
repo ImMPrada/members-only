@@ -20,12 +20,12 @@
 
     <div class="field">
       <%= f.label :username, 'username:' %>
-      <%= f.text_field :username, { placeholder: UsersController::USERNAME_PLACEHOLDER, class: 'min-w-full' } %>
+      <%= f.text_field :username, { placeholder: 'cosme_fulanito', class: 'min-w-full' } %>
     </div>
 
     <div class="field">
       <%= f.label :email, 'e-mail:' %>
-      <%= f.email_field :email, { placeholder: UsersController::EMAIL_PLACEHOLDER, class: 'min-w-full' } %>
+      <%= f.email_field :email, { placeholder: 'example@mail.com', class: 'min-w-full' } %>
     </div>
 
     <div class="field">
@@ -33,12 +33,12 @@
       <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %>
-      <%= f.password_field :password, {  autocomplete: "new-password", placeholder: UsersController::PASSWORD_PLACEHOLDER, class: 'min-w-full' }  %>
+      <%= f.password_field :password, {  autocomplete: "new-password", placeholder: '********', class: 'min-w-full' }  %>
     </div>
 
     <div class="field">
       <%= f.label :password_confirmation, 'confirm password' %>
-      <%= f.password_field :password_confirmation, {  autocomplete: "new-password", placeholder: UsersController::PASSWORD_PLACEHOLDER, class: 'min-w-full' }  %>
+      <%= f.password_field :password_confirmation, {  autocomplete: "new-password", placeholder: '********', class: 'min-w-full' }  %>
     </div>
 
     <div class="field">

@@ -10,13 +10,13 @@
 
 
   <div class="field">
-    <%= f.label :identificator, 'who are you:' %>
-    <%= f.text_field :identificator, { placeholder: 'username or email', class: 'min-w-full' } %>
+    <%= f.label :identifier, 'who are you:' %>
+    <%= f.text_field :identifier, { placeholder: 'username or email', class: 'min-w-full' } %>
   </div>
 
   <div class="field">
     <%= f.label :password, 'password:' %>
-    <%= f.password_field :password, {  autocomplete: "new-password", placeholder: UsersController::PASSWORD_PLACEHOLDER, class: 'min-w-full' }  %>
+    <%= f.password_field :password, {  autocomplete: "new-password", placeholder: '********', class: 'min-w-full' }  %>
   </div>
 
   <% if devise_mapping.rememberable? %>
