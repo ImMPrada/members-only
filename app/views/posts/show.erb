@@ -10,9 +10,15 @@
     <p class = 'block text-2xl mb-6'>
       <%= @post.content %>
     </p>
-    <span class = 'block text-base'>
-      By: <%= @post.user.username %>
-    </span>
+    <% if user_signed_in? %>
+      <span class = 'block text-base'>
+        <% if current_user.member_of?(clubhouse)  %>
+          By: <%= render partial: 'partials/author', locals: { what_to_show: :avatar, author: @post.user } %>
+        <% else %>
+          'You must be a member of this clubhouse to see the author of this comment'
+        <% end %>
+      </span>
+    <% end %>
     <span class = 'block text-base mb-1'>
       Comments: <%= comments.size %>
     </span>
@@ -27,6 +33,10 @@
                   }) %>
 
     <turbo-frame id="new_post_comment_form"></turbo-frame>
+  <% else %>
+    <%= link_to('login', 
+            new_user_session_path, 
+            { class: 'btn-goahead sticky bottom-5 text-xl' }) %>
   <% end %>
 
   <div id="post_comments_list" class="flex list-of-cards mt-5">

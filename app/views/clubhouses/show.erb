@@ -14,8 +14,7 @@
         Admins:
         <% if current_user_is_member %>
           <% @clubhouse.admins.each do |user| %>
-            <%= render(partial: 'partials/user_card',
-                        locals: { user:, basic_info: true }) %>
+            <%= render partial: 'partials/author', locals: { what_to_show: :avatar, author: user } %>
           <% end %>
         <% else %>
           <%= content_tag(:span,

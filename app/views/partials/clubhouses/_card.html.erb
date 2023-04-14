@@ -30,14 +30,17 @@
         <h3 class = 'block text-xl'>Admins:</h3>
           <% if current_user.member_of?(clubhouse) %>
             <% clubhouse.admins.each do |user| %>
-              <%= render(partial: 'partials/user_card',
-                         locals: { user:, basic_info: true }) %>
+              <%= render partial: 'partials/author', locals: { what_to_show: :avatar, author: user } %>
             <% end %>
           <% else %>
             <%= content_tag(:span,
                              'you must be a member of the clubhouse to see this') %>
           <% end %>
       </div>
+    <% else %>
+        if want to participate, please <%= link_to('log in',
+              new_user_session_path,
+              { class: 'link' }) %>
     <% end %>
   </div>
 </div>
