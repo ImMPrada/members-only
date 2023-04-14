@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
+
   def new
     @clubhouse = Clubhouse.find(params[:clubhouse_id])
     @post = Post.new

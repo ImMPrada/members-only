@@ -1,5 +1,5 @@
 class ClubhousesController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create]
+  before_action :authenticate_user!, only: %i[new create destroy]
 
   def index
     @clubhouses = Clubhouse.all
