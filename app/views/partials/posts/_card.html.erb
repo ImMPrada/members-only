@@ -14,8 +14,10 @@
                    post_path(post),
                    { class: 'block text-base' }) %>
     </div>
-    <span class = 'block text-base'>
-      By: <%= post.user.username %>
-    </span>
+    <div class = 'flex flex-col'>
+      <span class = 'block text-base'>
+        By: <%= post.user.username %>
+      </span>
+    </div>
   </div>
 </div>
