@@ -3,14 +3,21 @@
   <% if @clubhouses.empty? %>
     <h2 class="text-l pt-8 text-red-500">THERE ARE NO CLUBHOUSES</h2>
   <% else %>
-    <%= render partial: 'partials/clubhouses/list', locals: { clubhouses: @clubhouses } %>
+    <%= render(partial: 'partials/clubhouses/list',
+                locals: { clubhouses: @clubhouses }) %>
   <% end %>
 
   <% if user_signed_in? %>
-    <%= link_to 'Create a clubhouse', new_clubhouse_path, { class: 'btn-goahead sticky bottom-5 text-xl' } %>
-    <%= link_to 'Go to profile', user_path(current_user), { class: 'btn-goahead sticky bottom-5 text-xl' } %>
+    <%= link_to('Create a clubhouse',
+                 new_clubhouse_path,
+                 { class: 'btn-goahead sticky bottom-5 text-xl' }) %>
+    <%= link_to('Go to profile',
+                 user_path(current_user),
+                 { class: 'btn-goahead sticky bottom-5 text-xl' }) %>
   <% else %>
-    <%= link_to 'sign in', new_user_session_path, { class: 'btn-goahead sticky bottom-5 text-xl' } %>
+    <%= link_to('sign in',
+                 new_user_session_path,
+                 { class: 'btn-goahead sticky bottom-5 text-xl' }) %>
   <% end %>
 
 </div>
