@@ -18,6 +18,17 @@
     </span>
   </div>
 
+  <% if user_signed_in? %>
+    <%= link_to('Comment post',
+                  new_post_comment_path(@post),
+                  {
+                    class: 'btn-goahead sticky bottom-5 text-xl',
+                    data: { turbo_frame: "new_post_comment_form" }
+                  }) %>
+
+    <turbo-frame id="new_post_comment_form"></turbo-frame>
+  <% end %>
+
   <div id="post_comments_list" class="flex list-of-cards mt-5">
     <%= render partial: 'partials/comments/list', locals: { comments: } %>
   </div>
