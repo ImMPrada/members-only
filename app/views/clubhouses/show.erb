@@ -1,5 +1,6 @@
 <div class = 'flex flex-col'>
   <% posts = @clubhouse.posts %>
+  <% current_user_is_member = current_user.member_of?(@clubhouse) %>
 
   <div class = 'content-header'>
     <h2 class = 'block text-6xl mb-6 border-b-2'>
@@ -8,15 +9,28 @@
     <p class = 'block text-2xl mb-6'>
       <%= @clubhouse.description%>
     </p>
-    <div class = 'text-xl mb-4'>
-      Admins:
-      <% [*@clubhouse.owners, *@clubhouse.admins].each do |user| %>
-        <%= render partial: 'partials/user_card', locals: { user:, basic_info: true } %>
-      <% end %>
-    </div>
+    <% if user_signed_in? %>
+      <div class = 'text-xl mb-4'>
+        Admins:
+        <% if current_user_is_member %>
+          <% @clubhouse.admins.each do |user| %>
+            <%= render(partial: 'partials/user_card',
+                        locals: { user:, basic_info: true }) %>
+          <% end %>
+        <% else %>
+          <%= content_tag(:span,
+                            'you must be a member of the clubhouse to see this') %>
+        <% end %>
+      </div>
+    <% end %>
     <span class = 'block text-base mb-1'>
       Posts: <%= posts.size %>
     </span>
+    <% if current_user_is_member %>
+      <%= link_to('Add a post',
+                  new_clubhouse_path,
+                  { class: 'btn-goahead sticky bottom-5 text-xl' }) %>
+    <% end %>
   </div>
 
   <div class = 'flex list-of-cards'>
