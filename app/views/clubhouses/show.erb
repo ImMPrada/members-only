@@ -28,7 +28,7 @@
     </span>
     <% if current_user_is_member %>
       <%= link_to('Add a post',
-                  new_clubhouse_path,
+                  new_clubhouse_post_path(@clubhouse),
                   { class: 'btn-goahead sticky bottom-5 text-xl' }) %>
     <% end %>
   </div>
