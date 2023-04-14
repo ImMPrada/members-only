@@ -22,6 +22,10 @@
                             'you must be a member of the clubhouse to see this') %>
         <% end %>
       </div>
+
+      <%= link_to('Go to profile',
+                 user_path(current_user),
+                 { class: 'btn-goahead sticky bottom-5 text-xl' }) %>
     <% end %>
     <span class = 'block text-base mb-1'>
       Posts: <%= posts.size %>
