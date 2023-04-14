@@ -21,11 +21,17 @@
 
   <div class = 'flex flex-col w-1/4'>
     <h3 class = 'block text-xl'>Since: Date</h3>
-    <div>
-      <h3 class = 'block text-xl'>Admins:</h3>
-        <% [*clubhouse.owners, *clubhouse.admins].each do |user| %>
-          <%= render partial: 'partials/user_card', locals: { user:, basic_info: true } %>
-        <% end %>
-    </div>
+    <% if user_signed_in? %>
+      <div>
+        <h3 class = 'block text-xl'>Admins:</h3>
+          <% if current_user.member_of?(clubhouse) %>
+            <% [*clubhouse.owners, *clubhouse.admins].each do |user| %>
+              <%= render partial: 'partials/user_card', locals: { user:, basic_info: true } %>
+            <% end %>
+          <% else %>
+            <%= content_tag(:span, 'you must be a member of the clubhouse to see this') %>
+          <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
