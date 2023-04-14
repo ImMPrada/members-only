@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'clubhouses#index'
 
   resources :clubhouses do
-    resources :posts, only: %i[new create index show destroy]
+    resources :posts, only: %i[new create destroy]
   end
   resources :users, only: %i[new create show destroy]
 
