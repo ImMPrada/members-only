@@ -29,7 +29,7 @@
       <div>
         <h3 class = 'block text-xl'>Admins:</h3>
           <% if current_user.member_of?(clubhouse) %>
-            <% [*clubhouse.owners, *clubhouse.admins].each do |user| %>
+            <% clubhouse.admins.each do |user| %>
               <%= render(partial: 'partials/user_card',
                          locals: { user:, basic_info: true }) %>
             <% end %>
