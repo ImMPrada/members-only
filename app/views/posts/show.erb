@@ -5,7 +5,7 @@
   <div class = 'content-header'>
     <%= link_to "clubhouse: #{clubhouse.title}",
       clubhouse_path(clubhouse),
-      { class: 'block text-xl mb-2' } 
+      { class: 'link block text-xl mb-2' } 
     %>
     <p class = 'block text-2xl mb-6'>
       <%= @post.content %>
@@ -18,9 +18,7 @@
     </span>
   </div>
 
-  <div class = 'flex list-of-cards'>
-    <% comments.each do |comment| %>
-      <%= render partial: 'partials/comment_card', locals: { comment: } %>
-    <% end %>
+  <div id="post_comments_list" class="flex list-of-cards mt-5">
+    <%= render partial: 'partials/comments/list', locals: { comments: } %>
   </div>
 </div>
