@@ -1,6 +1,5 @@
 <div class = 'flex flex-col'>
   <% posts = @clubhouse.posts %>
-  <% current_user_is_member = current_user.member_of?(@clubhouse) %>
 
   <div class = 'content-header'>
     <h2 class = 'block text-6xl mb-6 border-b-2'>
@@ -12,30 +11,38 @@
     <% if user_signed_in? %>
       <div class = 'text-xl mb-4'>
         Admins:
-        <% if current_user_is_member %>
-          <% @clubhouse.admins.each do |user| %>
-            <%= render partial: 'partials/author', locals: { what_to_show: :avatar, author: user } %>
+        <% if user_signed_in? %>
+          <% if current_user.member_of?(@clubhouse) %>
+            <% @clubhouse.admins.each do |user| %>
+              <%= render partial: 'partials/author', locals: { what_to_show: :avatar, author: user } %>
+            <% end %>
+          <% else %>
+            <%= content_tag(:span,
+                              'you must be a member of the clubhouse to see this') %>
           <% end %>
-        <% else %>
-          <%= content_tag(:span,
-                            'you must be a member of the clubhouse to see this') %>
         <% end %>
       </div>
-
       <%= link_to('Go to profile',
                  user_path(current_user),
                  { class: 'btn-goahead sticky bottom-5 text-xl' }) %>
+    <% else %>
+      <%= link_to('sign in',
+                 new_user_session_path,
+                 { class: 'btn-goahead sticky bottom-5 text-xl' }) %>
     <% end %>
+
     <span class = 'block text-base mb-1'>
       Posts: <%= posts.size %>
     </span>
-    <% if current_user_is_member %>
-      <%= link_to('Add a post',
-                  new_clubhouse_post_path(@clubhouse),
-                  {
-                    class: 'btn-goahead sticky bottom-5 text-xl',
-                    data: { turbo_frame: "new_post_form" }
-                  }) %>
+    <% if user_signed_in? %>
+      <% if current_user.member_of?(@clubhouse) %>
+        <%= link_to('Add a post',
+                    new_clubhouse_post_path(@clubhouse),
+                    {
+                      class: 'btn-goahead sticky bottom-5 text-xl',
+                      data: { turbo_frame: "new_post_form" }
+                    }) %>
+      <% end %>
     <% end %>
     <turbo-frame id="new_post_form"></turbo-frame>
   </div>
