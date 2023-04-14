@@ -10,7 +10,9 @@
       <span class = 'block text-base'>
         Comments: <%= post.comments.size %>
       </span>
-      <%= link_to 'Go to post', post_path(post), { class: 'block text-base' } %>
+      <%= link_to('Go to post',
+                   post_path(post),
+                   { class: 'block text-base' }) %>
     </div>
     <span class = 'block text-base'>
       By: <%= post.user.username %>
