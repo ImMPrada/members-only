@@ -1,0 +1,5 @@
+<% if posts.empty? %>
+  <h2 class="text-l pt-8 text-red-500">THERE ARE NO CLUBHOUSES</h2>
+<% else %>
+  <%= render partial: 'partials/posts/card', locals: { post: } %>
+<% end %>
