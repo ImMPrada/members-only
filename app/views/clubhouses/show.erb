@@ -33,9 +33,7 @@
     <% end %>
   </div>
 
-  <div class = 'flex list-of-cards'>
-    <% posts.each do |post| %>
-      <%= render partial: 'partials/post_card', locals: { post: } %>
-    <% end %>
+  <div id="clubhouse_posts_list" class="flex list-of-cards mt-5">
+    <%= render partial: 'partials/posts/list', locals: { posts: } %>
   </div>
 </div>
