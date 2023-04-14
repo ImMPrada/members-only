@@ -1,0 +1,14 @@
+<%if what_to_show == :avatar %>
+  <%= link_to(
+    image_tag("https://api.dicebear.com/6.x/bottts/svg?seed=#{current_user.username}",
+               size: "50x50",
+               class: "round-2 full-round"),
+    user_path(author))
+  %>
+<% else %>
+  <% if author == current_user%>
+    <%= link_to 'me', user_path(author), { class: 'link text-base' } %>
+  <% else %>
+    <%= link_to author.username, user_path(author), { class: 'link text-base' }  %>
+  <% end %>
+<% end %>
