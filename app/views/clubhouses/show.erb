@@ -29,8 +29,12 @@
     <% if current_user_is_member %>
       <%= link_to('Add a post',
                   new_clubhouse_post_path(@clubhouse),
-                  { class: 'btn-goahead sticky bottom-5 text-xl' }) %>
+                  {
+                    class: 'btn-goahead sticky bottom-5 text-xl',
+                    data: { turbo_frame: "new_post_form" }
+                  }) %>
     <% end %>
+    <turbo-frame id="new_post_form"></turbo-frame>
   </div>
 
   <div id="clubhouse_posts_list" class="flex list-of-cards mt-5">
