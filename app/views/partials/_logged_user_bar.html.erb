@@ -5,5 +5,9 @@
     { class: "round-2 full-round}" }
   ) %>
   <%= content_tag(:h_3, user.username, class: h3_size) %>
-  <%= link_to "Log out", destroy_user_session_path, { class: "block link #{logout_size}" } %>
+  <% if user == current_user %>
+    <%= link_to "Log out", destroy_user_session_path, { class: "block link #{logout_size}" } %>
+  <% else %>
+    <%= link_to "Log out #{current_user.username}", destroy_user_session_path, { class: "block link #{logout_size}" } %>
+  <% end %>
 </div>
