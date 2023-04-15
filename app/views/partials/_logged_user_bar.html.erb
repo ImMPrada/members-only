@@ -1,0 +1,5 @@
+<div class="w-full flex gap-5 my-5 items-end">
+  <%= image_tag("https://api.dicebear.com/6.x/bottts/svg?seed=#{user.username}", size:, class: "round-2 full-round") %>
+  <%= content_tag(:h_3, user.username, class: h3_size) %>
+  <%= link_to "Log out", destroy_user_session_path, { class: "block link #{logout_size}" } %>
+</div>
