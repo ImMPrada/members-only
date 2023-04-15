@@ -1,8 +1,11 @@
 <div class="w-full flex flex-col">
   <div class="w-full flex gap-5 my-5 items-end">
-    <%= image_tag("https://api.dicebear.com/6.x/bottts/svg?seed=#{@user.username}", size: "100x100", class: "round-2 full-round") %>
-    <%= content_tag(:h_3, @user.username, class: "text-6xl") %>
-    <%= link_to "Log out", destroy_user_session_path, { class: 'block link text-xl' } %>
+    <%= render partial: 'partials/logged_user_bar', locals: {
+      user: @user,
+      size: "100x100",
+      h3_size: "text-6xl",
+      logout_size: "text-xl"
+    } %>
   </div>
 
   <%= link_to "Go to -all clubhouses- list", root_path, { class: 'btn-goahead text-xl mb-5' } %>
