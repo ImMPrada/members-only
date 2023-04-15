@@ -1,6 +1,17 @@
 <div class = 'flex flex-col'>
   <% posts = @clubhouse.posts %>
 
+  <% if user_signed_in? %>
+    <div class="w-full flex gap-5 my-5 items-end">
+      <%= render partial: 'partials/logged_user_bar', locals: {
+        user: current_user,
+        size: "50x50",
+        h3_size: "text-xl",
+        logout_size: "text-base"
+      } %>
+    </div>
+  <% end %>
+
   <div class = 'content-header'>
     <h2 class = 'block text-6xl mb-6 border-b-2'>
       <%= @clubhouse.title %>
@@ -22,9 +33,6 @@
           <% end %>
         <% end %>
       </div>
-      <%= link_to('Go to profile',
-                 user_path(current_user),
-                 { class: 'btn-goahead sticky bottom-5 text-xl' }) %>
     <% else %>
       <%= link_to('sign in',
                  new_user_session_path,
