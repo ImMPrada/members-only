@@ -26,7 +26,7 @@ class ClubhousesController < ApplicationController
       respond_to { |format| update_clubhouses_list(format) }
     else
       respond_to do |format|
-        format.html { render :new, notice: 'User was successfully updated.' }
+        format.html { render :new, notice: 'Clubhouse was not created.' }
       end
     end
   end
@@ -46,6 +46,6 @@ class ClubhousesController < ApplicationController
         turbo_stream.update(:new_clubhouse_form, '')
       ]
     end
-    format.html { redirect_to user_path(current_user), notice: 'User was successfully updated.' }
+    format.html { redirect_to user_path(current_user), notice: 'Clubhouse was successfully created.' }
   end
 end

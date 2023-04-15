@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
       respond_to { |format| update_post_comments_list(format) }
     else
       respond_to do |format|
-        format.html { render :new, notice: 'Post was not created.' }
+        format.html { render :new, notice: 'Comment was not created.' }
       end
     end
   end
@@ -43,6 +43,6 @@ class CommentsController < ApplicationController
         turbo_stream.update(:post_comments_list_empty_message, '')
       ]
     end
-    format.html { redirect_to post_path(@post), notice: 'User was successfully updated.' }
+    format.html { redirect_to post_path(@post), notice: 'Comment was successfully created.' }
   end
 end

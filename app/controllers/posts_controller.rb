@@ -43,6 +43,6 @@ class PostsController < ApplicationController
         turbo_stream.update(:clubhouse_posts_list_empty_message, '')
       ]
     end
-    format.html { redirect_to clubhouse_path(@clubhouse), notice: 'User was successfully updated.' }
+    format.html { redirect_to clubhouse_path(@clubhouse), notice: 'Post was successfully created.' }
   end
 end
