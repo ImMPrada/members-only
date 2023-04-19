@@ -1,0 +1,10 @@
+<% if comments.empty? %>
+  <div id = 'post_comments_list_empty_message'>
+    <h2 class="text-l pt-8 text-red-500">there are no comments</h2>
+  </div>
+<% else %>
+  <% comments.each do |comment| %>
+    <%= render(partial: 'partials/comments/card',
+              locals: { comment: }) %>
+  <% end %>
+<% end %>

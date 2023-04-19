@@ -1,0 +1,61 @@
+<div class = 'flex flex-col'>
+  <% posts = @clubhouse.posts %>
+
+  <% if user_signed_in? %>
+    <div class="w-full flex gap-5 my-5 items-end">
+      <%= render partial: 'partials/logged_user_bar', locals: {
+        user: current_user,
+        size: "50x50",
+        h3_size: "text-xl",
+        logout_size: "text-base"
+      } %>
+    </div>
+  <% end %>
+
+  <div class = 'content-header'>
+    <h2 class = 'block text-6xl mb-6 border-b-2'>
+      <%= @clubhouse.title %>
+    </h2>
+    <p class = 'block text-2xl mb-6'>
+      <%= @clubhouse.description%>
+    </p>
+    <% if user_signed_in? %>
+      <div class = 'text-xl mb-4'>
+        Admins:
+        <% if user_signed_in? %>
+          <% if current_user.member_of?(@clubhouse) %>
+            <% @clubhouse.admins.each do |user| %>
+              <%= render partial: 'partials/author', locals: { show: :avatar, author: user } %>
+            <% end %>
+          <% else %>
+            <%= content_tag(:span,
+                              'you must be a member of the clubhouse to see this') %>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <%= link_to('sign in',
+                 new_user_session_path,
+                 { class: 'btn-goahead sticky bottom-5 text-xl' }) %>
+    <% end %>
+
+    <span class = 'block text-base mb-1'>
+      Posts: <%= posts.size %>
+    </span>
+    <% if user_signed_in? %>
+      <% if current_user.member_of?(@clubhouse) %>
+        <%= link_to('Add a post',
+                    new_clubhouse_post_path(@clubhouse),
+                    {
+                      class: 'btn-goahead sticky bottom-5 text-xl',
+                      data: { turbo_frame: "new_post_form" }
+                    }) %>
+      <% end %>
+    <% end %>
+    <turbo-frame id="new_post_form"></turbo-frame>
+  </div>
+
+  <div id="clubhouse_posts_list" class="flex list-of-cards mt-5">
+    <%= render partial: 'partials/posts/list', locals: { posts: } %>
+  </div>
+</div>

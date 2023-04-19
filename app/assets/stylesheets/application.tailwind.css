@@ -15,4 +15,13 @@
   .field {
     @apply flex flex-col w-full mb-2;
   }
+  .btn {
+    @apply rounded-lg py-1 px-5 block font-medium cursor-pointer;
+  }
+  .btn-goahead {
+    @apply btn bg-green-100 text-green-800 text-center p-2 border-2 border-green-800;
+  }
+  .link {
+    @apply text-sky-500 no-underline hover:underline;
+  }
 }

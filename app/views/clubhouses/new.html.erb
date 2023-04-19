@@ -1,35 +1,37 @@
+<turbo-frame id="new_clubhouse_form">
+  <div class="min-w-full flex flex-col">
+    <h1 class="min-w-full font-bold text-2xl block">NEW CLUBHOUSE</h1>
+    <% unless @clubhouse.errors.empty? %>
+      <div id = "notice" class="border border-red-400 p-2 rounded round-4 bg-red-100 text-red-400">
+        There are some errors:
+        <ul>
+          <% @clubhouse.errors.full_messages.each do |msg| %>
+            <li class="block pl-2">* <%= msg %></li>
+          <% end %>
+      </div>
+    <% end %>
 
-<div class="w-3/5 flex flex-col mx-auto">
-  <h1 class="min-w-full font-bold text-2xl block">NEW CLUBHOUSE</h1>
-  <% unless @clubhouse.errors.empty? %>
-    <div class="border border-red-400 p-2 rounded round-4 bg-red-100 text-red-400">
-      There are some errors:
-      <ul>
-        <% @clubhouse.errors.full_messages.each do |msg| %>
-          <li class="block pl-2">* <%= msg %></li>
-        <% end %>
-    </div>
-  <% end %>
+    <%= form_with(model: @clubhouse,
+                  data: {
+                    url: clubhouses_path(@clubhouse)
+                  },
+                  class: "min-w-full mt-2") do |f| %>
 
-  <%= form_with(model: @clubhouse,
-                 data: {
-                  url: clubhouses_path(@clubhouse),
-                  turbo: false
-                 },
-                 class: "min-w-full mt-2") do |f| %>
+      <div class="field">
+        <%= f.label :title, 'title:' %>
+        <%= f.text_field :title, { class: 'min-w-full' } %>
+      </div>
 
-    <div class="field">
-      <%= f.label :title, 'title:' %>
-      <%= f.text_field :title, { class: 'min-w-full' } %>
-    </div>
+      <div class="field">
+        <%= f.label :description, 'description:' %>
+        <%= f.text_field :description, { class: 'min-w-full' } %>
+      </div>
 
-    <div class="field">
-      <%= f.label :description, 'description:' %>
-      <%= f.text_field :description, { class: 'min-w-full' } %>
-    </div>
+      <div class="field">
+        <%= f.submit 'Create clubhouse', { class: 'border p-4'} %>
+      </div>
+    <% end %>
 
-    <div class="field">
-      <%= f.submit 'Create clubhouse', { class: 'border p-4'} %>
-    </div>
-  <% end %>
-</div>
+    <%= link_to "cancel", user_path(current_user), { class: 'block link text-xl' } %>
+  </div>
+</turbo-frame>

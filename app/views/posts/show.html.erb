@@ -1,0 +1,59 @@
+<div class = 'flex flex-col'>
+  <% comments = @post.comments %>
+  <% clubhouse = @post.clubhouse %>
+
+  <% if user_signed_in? %>
+    <div class="w-full flex gap-5 my-5 items-end">
+      <%= render partial: 'partials/logged_user_bar', locals: {
+        user: current_user,
+        size: "50x50",
+        h3_size: "text-xl",
+        logout_size: "text-base"
+      } %>
+    </div>
+  <% end %>
+
+  <div class = 'content-header'>
+    <%= link_to "clubhouse: #{clubhouse.title}",
+      clubhouse_path(clubhouse),
+      { class: 'link block text-xl mb-2' } 
+    %>
+    <p class = 'block text-2xl mb-6'>
+      <%= @post.content %>
+    </p>
+    <% if user_signed_in? %>
+      <span class = 'block text-base'>
+        <% if current_user.member_of?(clubhouse)  %>
+          By: <%= render partial: 'partials/author', locals: { show: :avatar, author: @post.user } %>
+        <% else %>
+          You must be a member of the clubhouse to see the author of this comment
+        <% end %>
+      </span>
+    <% end %>
+    <span class = 'block text-base mb-1'>
+      Comments: <%= comments.size %>
+    </span>
+  </div>
+
+  <% if user_signed_in? %>
+    <% if current_user.member_of?(clubhouse)  %>
+      <%= link_to('Comment post',
+                    new_post_comment_path(@post),
+                    {
+                      class: 'btn-goahead sticky bottom-5 text-xl',
+                      data: { turbo_frame: "new_post_comment_form" }
+                    }) %>
+    <% else %>
+      You must be a member of the clubhouse to comment this post
+    <% end %>
+    <turbo-frame id="new_post_comment_form"></turbo-frame>
+  <% else %>
+    <%= link_to('login', 
+            new_user_session_path, 
+            { class: 'btn-goahead sticky bottom-5 text-xl' }) %>
+  <% end %>
+
+  <div id="post_comments_list" class="flex list-of-cards mt-5">
+    <%= render partial: 'partials/comments/list', locals: { comments: } %>
+  </div>
+</div>

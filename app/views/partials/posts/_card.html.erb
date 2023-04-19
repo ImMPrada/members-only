@@ -1,0 +1,33 @@
+<div class = 'flex flex-col card'>
+  <div class = 'w-full mb-6 p-2'>
+    <p class = 'block text-xl'>
+      <%= post.content %>
+    </p>
+  </div>
+
+  <div class = 'flex flex-row w-full justify-between'>
+    <div class = 'flex flex-col'>
+      <span class = 'block text-base'>
+        Comments: <%= post.comments.size %>
+      </span>
+      <%= link_to('Go to post',
+                   post_path(post),
+                   { class: 'link block text-base' }) %>
+    </div>
+    <div class = 'flex flex-col'>
+      <span class = 'block text-base'>
+        <% if user_signed_in? %>
+          <% if current_user.member_of?(post.clubhouse)  %>
+            By: <%= render partial: 'partials/author', locals: { show: :name, author: post.user } %>
+          <% else %>
+            'You must be a member of this clubhouse to see the author of this comment'
+          <% end %>
+        <% else %>
+            if want to participate, please <%= link_to('log in',
+                  new_user_session_path,
+                  { class: 'link' }) %>
+        <% end %>
+      </span>
+    </div>
+  </div>
+</div>

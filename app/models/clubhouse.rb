@@ -18,21 +18,21 @@ class Clubhouse < ApplicationRecord
   end
 
   def owners
-    users_of_role(Membership::OWNER_ROLE)
+    role_memberships = memberships.where(
+      role: Membership::OWNER_ROLE
+    )
+    users.where(id: role_memberships.select(:user_id))
   end
 
   def admins
-    users_of_role(Membership::ADMIN_ROLE)
+    role_memberships = memberships.where(role: [Membership::OWNER_ROLE, Membership::ADMIN_ROLE])
+    users.where(id: role_memberships.select(:user_id))
   end
 
   def members
-    users_of_role(Membership::MEMBER_ROLE)
-  end
-
-  private
-
-  def users_of_role(role)
-    role_memberships = memberships.where(role:)
+    role_memberships = memberships.where(
+      role: Membership::MEMBER_ROLE
+    )
     users.where(id: role_memberships.select(:user_id))
   end
 end

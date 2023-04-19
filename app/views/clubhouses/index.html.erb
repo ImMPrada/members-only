@@ -1,16 +1,25 @@
-<div class="flex-col">
-  <h2>
-    THE CLUBHOUSES
-  </h2>
-
-  <% @clubhouses.each do |clubhouse| %>
-    <%= content_tag(:p, "Clubhouse: #{clubhouse.title}") %>
-  <% end %>
+<div id="clubhouses_list" class="flex list-of-cards">
 
   <% if user_signed_in? %>
-    <%= link_to "New Clubhouse", new_clubhouse_path %>
-    <%= link_to "Go to profile", user_path(current_user) %>
+    <div class="w-full flex gap-5 my-5 items-end">
+      <%= render partial: 'partials/logged_user_bar', locals: {
+        user: current_user,
+        size: "50x50",
+        h3_size: "text-xl",
+        logout_size: "text-base"
+      } %>
+    </div>
   <% else %>
-    <%= link_to "sign in", new_user_session_path %>
+    <%= link_to('sign in',
+                 new_user_session_path,
+                 { class: 'btn-goahead sticky bottom-5 text-xl' }) %>
   <% end %>
+
+  <% if @clubhouses.empty? %>
+    <h2 class="text-l pt-8 text-red-500">THERE ARE NO CLUBHOUSES</h2>
+  <% else %>
+    <%= render(partial: 'partials/clubhouses/list',
+                locals: { clubhouses: @clubhouses }) %>
+  <% end %>
+
 </div>

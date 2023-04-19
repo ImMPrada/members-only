@@ -30,6 +30,10 @@ class User < ApplicationRecord
     clubhouses_of_role(Membership::MEMBER_ROLE)
   end
 
+  def member_of?(clubhouse)
+    memberships.find_by(clubhouse:).present?
+  end
+
   private
 
   def clubhouses_of_role(role)

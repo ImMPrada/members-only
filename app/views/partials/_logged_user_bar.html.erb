@@ -1,0 +1,13 @@
+<div class="w-full flex gap-5 my-5 items-end">
+  <%= link_to(
+    image_tag("https://api.dicebear.com/6.x/bottts/svg?seed=#{user.username}", size:, class: "round-2 full-round"),
+    user_path(user),
+    { class: "round-2 full-round}" }
+  ) %>
+  <%= content_tag(:h_3, user.username, class: h3_size) %>
+  <% if user == current_user %>
+    <%= link_to "Log out", destroy_user_session_path, { class: "block link #{logout_size}" } %>
+  <% else %>
+    <%= link_to "Log out #{current_user.username}", destroy_user_session_path, { class: "block link #{logout_size}" } %>
+  <% end %>
+</div>
