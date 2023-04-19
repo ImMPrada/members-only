@@ -31,7 +31,7 @@ class User < ApplicationRecord
   end
 
   def member_of?(clubhouse)
-    !memberships.find_by(clubhouse:).nil?
+    memberships.find_by(clubhouse:).present?
   end
 
   private
