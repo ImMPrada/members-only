@@ -25,11 +25,7 @@ class Clubhouse < ApplicationRecord
   end
 
   def admins
-    role_memberships = memberships.where(
-      'role = ? OR role = ?',
-      Membership::OWNER_ROLE,
-      Membership::ADMIN_ROLE
-    )
+    role_memberships = memberships.where(role: [Membership::OWNER_ROLE, Membership::ADMIN_ROLE])
     users.where(id: role_memberships.select(:user_id))
   end
 
