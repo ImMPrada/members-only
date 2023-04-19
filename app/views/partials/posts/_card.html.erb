@@ -18,7 +18,7 @@
       <span class = 'block text-base'>
         <% if user_signed_in? %>
           <% if current_user.member_of?(post.clubhouse)  %>
-            By: <%= render partial: 'partials/author', locals: { what_to_show: :name, author: post.user } %>
+            By: <%= render partial: 'partials/author', locals: { show: :name, author: post.user } %>
           <% else %>
             'You must be a member of this clubhouse to see the author of this comment'
           <% end %>
