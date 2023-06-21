@@ -1,6 +1,10 @@
 <div class="w-full flex gap-5 my-5 items-end">
   <%= link_to(
-    image_tag("https://api.dicebear.com/6.x/bottts/svg?seed=#{user.username}", size:, class: "round-2 full-round"),
+    image_tag(
+      user.avatar_url || "https://api.dicebear.com/6.x/bottts/svg?seed=#{user.username}",
+      size:,
+      class: "round-2 full-round"
+    ),
     user_path(user),
     { class: "round-2 full-round}" }
   ) %>
